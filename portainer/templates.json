@@ -1,4 +1,5 @@
-[{
+[
+    {
     "type": "stack",
     "title": "EveSeat",
     "name": "seat",
@@ -9,7 +10,7 @@
     "logo": "https://i.imgur.com/S3JAmjv.png",
     "repository": {
       "url": "https://github.com/justindh/eveseat-scripts",
-      "stackfile": "docker-compose/docker-compose.yml"
+      "stackfile": "portainer/docker-compose.yml"
     },
     "env": [
         {
@@ -121,6 +122,46 @@
             "name": "SEAT_PLUGINS",
             "label": "Seat Plugins",
             "description":"Comma Delimited list like denngarr/seat-fitting,warlof/slackbot"
+        }
+    ]
+  },
+  {
+    "type": "stack",
+    "title": "LetsEncrypt",
+    "name": "letsencrypt",
+    "description": "Deploys Lets Encrypt",
+    "note": "This provides a way to secure seat (and any thing else on the server) with ssl.",
+    "categories": ["eve online"],
+    "platform": "linux",
+    "logo": "https://raw.githubusercontent.com/linuxserver/docker-templates/master/linuxserver.io/img/nginx-icon.png",
+    "repository": {
+      "url": "https://github.com/justindh/eveseat-scripts",
+      "stackfile": "portainer/letsencrypt/docker-compose.yml"
+    },
+    "env": [
+        {
+            "name": "NGINX_WEB",
+            "set": "nginx-web"
+        },
+        {
+            "name": "DOCKER_GEN",
+            "set":"nginx-gen"
+        },
+        {
+            "name": "LETS_ENCRYPT",
+            "set":"nginx-letsencrypt"
+        },
+        {
+            "name": "IP",
+            "set":"0.0.0.0"
+        },
+        {
+            "name": "NETWORK",
+            "set": "webproxy"
+        },
+        {
+            "name": "SERVICE_NETWORK",
+            "set": "webservices"
         }
     ]
   }
