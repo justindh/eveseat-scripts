@@ -1,0 +1,14 @@
+{
+    "type": "stack",
+    "title": "EveSeat",
+    "name": "func",
+    "description": "Deploys EveSeat server Bundle",
+    "note": "Deploys all the seat docker containers",
+    "categories": ["eve online"],
+    "platform": "linux",
+    "logo": "https://i.imgur.com/aPPOxSK.png",
+    "repository": {
+      "url": "https://github.com/justindh/eveseat-scripts/tree/master/docker-compose",
+      "stackfile": "docker-compose.yml"
+    }
+  },
