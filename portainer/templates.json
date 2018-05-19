@@ -1,4 +1,4 @@
-{
+[{
     "type": "stack",
     "title": "EveSeat",
     "name": "func",
@@ -11,4 +11,5 @@
       "url": "https://github.com/justindh/eveseat-scripts/tree/master/docker-compose",
       "stackfile": "docker-compose.yml"
     }
-  },
+  }
+]
