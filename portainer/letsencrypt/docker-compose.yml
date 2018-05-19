@@ -10,11 +10,11 @@ services:
       - "${IP:-0.0.0.0}:80:80"
       - "${IP:-0.0.0.0}:443:443"
     volumes:
-      - nginx-data/conf.d:/etc/nginx/conf.d
-      - nginx-data/vhost.d:/etc/nginx/vhost.d
-      - nginx-data/html:/usr/share/nginx/html
-      - nginx-data/certs:/etc/nginx/certs:ro
-      - nginx-data/htpasswd:/etc/nginx/htpasswd:ro
+      - nginx-data-conf.d:/etc/nginx/conf.d
+      - nginx-data-vhost.d:/etc/nginx/vhost.d
+      - nginx-data-html:/usr/share/nginx/html
+      - nginx-data-certs:/etc/nginx/certs:ro
+      - nginx-data-htpasswd:/etc/nginx/htpasswd:ro
     networks:
       - default
       - outside
@@ -29,13 +29,13 @@ services:
     container_name: ${DOCKER_GEN:-nginx-gen}
     restart: always
     volumes:
-      - nginx-data/conf.d:/etc/nginx/conf.d
-      - nginx-data/vhost.d:/etc/nginx/vhost.d
-      - nginx-data/html:/usr/share/nginx/html
-      - nginx-data/certs:/etc/nginx/certs:ro
-      - nginx-data/htpasswd:/etc/nginx/htpasswd:ro
+      - nginx-data-conf.d:/etc/nginx/conf.d
+      - nginx-data-vhost.d:/etc/nginx/vhost.d
+      - nginx-data-html:/usr/share/nginx/html
+      - nginx-data-certs:/etc/nginx/certs:ro
+      - nginx-data-htpasswd:/etc/nginx/htpasswd:ro
       - /var/run/docker.sock:/tmp/docker.sock:ro
-      - ./nginx.tmpl:/etc/docker-gen/templates/nginx.tmpl:ro
+      - nginx-data-template:/etc/docker-gen/templates/:ro
     networks:
       - default
       - outside
@@ -49,10 +49,10 @@ services:
     container_name: ${LETS_ENCRYPT:-nginx-letsencrypt}
     restart: always
     volumes:
-      - nginx-data/conf.d:/etc/nginx/conf.d
-      - nginx-data/vhost.d:/etc/nginx/vhost.d
-      - nginx-data/html:/usr/share/nginx/html
-      - nginx-data/certs:/etc/nginx/certs:rw
+      - nginx-data-conf.d:/etc/nginx/conf.d
+      - nginx-data-vhost.d:/etc/nginx/vhost.d
+      - nginx-data-html:/usr/share/nginx/html
+      - nginx-data-certs:/etc/nginx/certs:rw
       - /var/run/docker.sock:/var/run/docker.sock:ro
     environment:
       NGINX_DOCKER_GEN_CONTAINER: ${DOCKER_GEN:-nginx-gen}
@@ -65,7 +65,12 @@ services:
         max-size: ${NGINX_LETSENCRYPT_LOG_MAX_SIZE:-2m}
         max-file: ${NGINX_LETSENCRYPT_LOG_MAX_FILE:-10}
 volumes:
-    nginx-data:
+    nginx-data-template:
+    nginx-data-conf.d:
+    nginx-data-vhost.d:
+    nginx-data-html:
+    nginx-data-certs:
+    nginx-data-htpasswd:
 networks:
   default:
     external:
