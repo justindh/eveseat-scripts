@@ -8,8 +8,8 @@
     "platform": "linux",
     "logo": "https://i.imgur.com/aPPOxSK.png",
     "repository": {
-      "url": "https://github.com/justindh/eveseat-scripts/tree/master/docker-compose",
-      "stackfile": "docker-compose.yml"
+      "url": "https://github.com/justindh/eveseat-scripts",
+      "stackfile": "docker-compose/docker-compose.yml"
     }
   }
 ]
