@@ -10,6 +10,126 @@
     "repository": {
       "url": "https://github.com/justindh/eveseat-scripts",
       "stackfile": "docker-compose/docker-compose.yml"
-    }
+    },
+    "env": [
+        {
+            "name": "DB_USERNAME",
+            "label": "DB Username",
+            "description": "Username for Database, like seat-corpname",
+            "set":"seat"
+            },
+        {
+            "name": "DB_PASSWORD",
+            "label": "DB Password"
+            },
+        {
+            "name": "DB_DATABASE",
+            "label": "DB Name",
+            "description": "Name for the Database, like seat-corpname",
+            "set": "seat"
+            },
+        {
+            "name": "APP_DEBUG",
+            "label": "Debug",
+            "select": [
+                {
+                    "text": "False",
+                    "value": false
+                },
+                {
+                    "text": "True",
+                    "value": true
+                }
+            ],
+            "set": "false"
+            },
+        {
+            "name": "EVE_CLIENT_ID",
+            "label": "Eve Client ID",
+            "description": "See http://eveseat.github.io/docs/guides/installation/basic_installation/esi/"
+            },
+        {
+            "name": "EVE_CLIENT_SECRET",
+            "label": "Eve Esi Secret"
+            },
+        {
+            "name": "EVE_CALLBACK_URL",
+            "label": "Eve Esi Callback",
+            "description":"Like: https://localhost/auth/eve/callback",
+            "set": "https://localhost/auth/eve/callback"
+
+            },
+        {
+            "name": "MAIL_DRIVER",
+            "label": "Mail Driver",
+            "set": "smtp"
+            },
+        {
+            "name": "MAIL_HOST",
+            "label": "Mail Host",
+            "set": "smtp.mailtrap.io"
+            },
+        {
+            "name": "MAIL_PORT",
+            "label": "Mail Port",
+            "set": "2525"
+            },
+        {
+            "name": "MAIL_USERNAME",
+            "label": "Mail Username",
+            "set": "null"
+            },
+        {
+            "name": "MAIL_PASSWORD",
+            "label": "Mail Password",
+            "set": "null"
+            },
+        {
+            "name": "MAIL_ENCRYPTION",
+            "label": "Mail Encryption",
+            "set": "null"
+            },
+        {
+            "name": "MAIL_FROM_ADDRESS",
+            "label": "Mail From Address",
+            "set": "seat@localhost"
+            },
+        {
+            "name": "MAIL_FROM_NAME: ${MAIL_FROM_NAME:-}",
+            "label": "Mail From Name",
+            "set":"seatAdmin"
+            },
+        {
+            "name": "NGINX_HTTP",
+            "label": "NGINX Http Port",
+            "set": "8080"
+            },
+        {
+            "name": "NGINX_HTTPS",
+            "label": "NGINX Https Port",
+            "set":"8443"
+            },
+        {
+            "name": "NGINX_HOST",
+            "label": "NGINX Host",
+            "set":"_",
+            "description":"Only needed in specific instances, set this to _ unless you need something else"
+            },
+        {
+            "name": "SEAT_PLUGINS",
+            "label": "Seat Plugins",
+            "description":"Comma Delimited list of plugins like denngarr/seat-fitting,warlof/slackbot,kassie/calendar "
+            },
+        {
+            "name": "VIRTUAL_HOST:",
+            "label": "Virtual Host",
+            "description":"Set this to the URL you want to access the server on, likely set to the same thing as APP URL"
+            },
+        {
+            "name": "APP_URL",
+            "label": "App Url",
+            "description":"Set this to the URL you want to access the server on, likely set to the same thing as Virtual Host"
+        }
+    ]
   }
 ]
